@@ -8,6 +8,7 @@ from recipapp.core.models import db, ma
 import recipapp.biz.product
 import recipapp.biz.unit
 import recipapp.biz.transaction
+import recipapp.biz.publish
 
 
 basedir = os.path.abspath(os.environ['HOME'])
@@ -55,7 +56,13 @@ def get_all_units():
 
 @app.route("/TRANSACTION", methods=['POST'])
 def create_transaction():
+    # TODO: añadir product_status=1 en tabla product_basket
     return jsonify(recipapp.biz.transaction(request))
+
+
+@app.route("/PUBLISH", methods=['POST'])
+def publish():
+    return jsonify(recipapp.biz.publish(request))
 
 
 @app.after_request
