@@ -11,7 +11,7 @@ import recipapp.biz.transaction
 import recipapp.biz.publish
 import recipapp.biz.basket
 
-basedir = os.path.abspath(os.environ['PWD'])
+basedir = os.path.abspath(os.environ['HOME'])
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(os.path.join(basedir, 'process_monitor.log'))
