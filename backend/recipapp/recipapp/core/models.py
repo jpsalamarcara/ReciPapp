@@ -80,10 +80,13 @@ class ProductBasket(db.Model):
     product_status = db.Column(db.Integer)
     pick_date = db.Column(db.Date)
     pick_hour = db.Column(db.String)
+    quantity = db.Column(db.Integer)
+
 
 class ProductBasketSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'product_id', 'basket_id')
+        fields = ('id', 'product_id', 'basket_id', 'product_status', 'pick_date', 'pick_hour', 'quantity')
+
 
 class Transaction(db.Model):
     __tablename__ = 'transaction'

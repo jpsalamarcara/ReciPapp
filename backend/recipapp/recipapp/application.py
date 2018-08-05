@@ -10,6 +10,7 @@ import recipapp.biz.unit
 import recipapp.biz.transaction
 import recipapp.biz.publish
 import recipapp.biz.basket
+import recipapp.biz.user
 
 basedir = os.path.abspath(os.environ['HOME'])
 logger = logging.getLogger(__name__)
@@ -56,7 +57,6 @@ def get_all_units():
 
 @app.route("/TRANSACTION", methods=['POST'])
 def create_transaction():
-    # TODO: añadir product_status=1 en tabla product_basket
     return jsonify(recipapp.biz.transaction.insert(request))
 
 
@@ -64,9 +64,16 @@ def create_transaction():
 def publish():
     return jsonify(recipapp.biz.publish.insert(request))
 
+
 @app.route("/BASKET/<user_id>", methods=['GET'])
 def get_user_basket(user_id):
     return jsonify(recipapp.biz.basket.get_allByUser(user_id))
+
+
+@app.route("/COLLECTOR", methods=['GET'])
+def get_all_collectors():
+    return jsonify(recipapp.biz.user.get_all_collectors())
+
 
 @app.after_request
 def after_request(response):

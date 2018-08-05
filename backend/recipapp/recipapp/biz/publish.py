@@ -9,8 +9,19 @@ from sqlalchemy.exc import IntegrityError
 def insert(request):
     product_id = request.json['product_id']
     basket_id = request.json['basket_id']
+    product_status = 0
+    pick_date = request.json['pick_date']
+    pick_hour = request.json['pick_hour']
+    quantity = request.json['quantity']
+
     try:
-        publish_product = ProductBasket(product_id=product_id, basket_id=basket_id)
+        publish_product = ProductBasket(product_id=product_id,
+                                        basket_id=basket_id,
+                                        product_status=product_status,
+                                        pick_date=pick_date,
+                                        pick_hour=pick_hour,
+                                        quantity=quantity
+                                        )
         db.session.add(publish_product)
         db.session.commit()
     except IntegrityError as e:
