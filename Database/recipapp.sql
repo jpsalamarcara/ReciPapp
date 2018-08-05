@@ -1,9 +1,13 @@
-﻿drop table core.product_x_basket;
+﻿drop table core.transaction;
+
+drop table core.product_x_basket;
 drop table core.basket;
-drop table core.product
+drop table core.product;
 drop table core.user;
 drop table core.user_category;
 drop table core.unit;
+
+-- Basic objects
 
 create table core.user_category(
 	id int primary key not null,
@@ -13,7 +17,7 @@ create table core.user_category(
 create table core.user(
 	id int primary key not null,
 	name text not null,
-	category int references core.user_category(id)
+	category int references core.user_category(id) not null
 );
 
 create table core.unit(
@@ -24,16 +28,32 @@ create table core.unit(
 create table core.product(
 	id int primary key not null,
 	name text not null,
-	unit_id int references core.unit(id)
+	unit_id int references core.unit(id) not null
 );
 
 create table core.basket(
 	id int primary key not null,
-	user_owner int references core.user(id)
+	user_owner int references core.user(id) not null,
+	latitude numeric,
+	longitude numeric
 );
 
 create table core.product_x_basket(
 	id int primary key not null,
-	product_id int references core.product(id),
-	basket_id int references core.basket(id)
+	product_id int references core.product(id) not null,
+	basket_id int references core.basket(id) not null
 );
+
+-- Basic Objects
+-- Transaction Objects
+
+create table core.transaction(
+	id int primary key not null,
+	product int references core.product(id) not null,
+	origin_user int references core.user(id) not null,
+	end_user int references core.user(id) not null,
+	date timestamp default current_date not null,
+	price numeric not null
+);
+
+
