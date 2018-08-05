@@ -6,28 +6,28 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>pro-buy</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Productos reciclables</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let material of listMaterials">
+    <ion-list>
+        <ion-item *ngFor="let material of listMaterials">
 
-      <ion-thumbnail item-start>
-        <img src='../../assets/imgs/{{ material.image }}'>
-      </ion-thumbnail>
-      <h2>{{ material.description }}</h2>
-      <br>
-      <ion-input type="number" placeholder="kg"></ion-input>
-      <ion-input type="number" placeholder="$"></ion-input>
+            <ion-thumbnail item-start>
+                <img src='assets/imgs/{{ material.image }}'>
+            </ion-thumbnail>
+            <h2>{{ material.description }}</h2>
+            <br>
+            <ion-input type="number" placeholder="kg"></ion-input>
+            <ion-input type="number" placeholder="$"></ion-input>
 
-    </ion-item>
-  </ion-list>
+        </ion-item>
+    </ion-list>
 
-  <button ion-button full (click)='addProduct()'>COMPRAR</button>
+    <button ion-button full (click)='addProduct()'>COMPRAR</button>
 
 </ion-content>

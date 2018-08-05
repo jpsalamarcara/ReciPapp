@@ -13,7 +13,7 @@
         <ion-item *ngFor="let collector of collectors.response">
 
             <ion-thumbnail item-start>
-                <img src="../../assets/imgs/garbage_deliver.png">
+                <img src="assets/imgs/garbage_deliver.png">
             </ion-thumbnail>
             <button [navPush]="proBuyPage" [navParams]="{ 'idCollector':collector.id }">
         <h2>{{ collector.name }}</h2>
