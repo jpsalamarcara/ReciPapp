@@ -9,7 +9,7 @@ import recipapp.biz.product
 import recipapp.biz.unit
 import recipapp.biz.transaction
 import recipapp.biz.publish
-
+import recipapp.biz.basket
 
 basedir = os.path.abspath(os.environ['PWD'])
 logger = logging.getLogger(__name__)

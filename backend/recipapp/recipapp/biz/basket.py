@@ -5,8 +5,7 @@ from recipapp.core.schemas import multiple_transaction_schema, transaction_schem
 from sqlalchemy.exc import IntegrityError
 
 def get_allByUser(user_id):
-    basket = db.session.query(ProductBasket, Basket).join(Basket).filter(Basket.user_owner == user_id) #.one()
-    #result = basket_schema.dump(basket, update_fields=False)
-    print(basket)
-    result = basket_schema.dump(basket.one(), update_fields=False)
-    return result
+    basket = Basket.query.filter(Basket.user_owner == user_id).one()
+    basket_result = basket_schema.dump(basket, update_fields=False)
+    productBasket = ProductBasket.query.filter(ProductBasket.basket_id == basket_result.id)
+    return basket_result
