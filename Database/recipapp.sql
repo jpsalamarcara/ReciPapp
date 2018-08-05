@@ -1,4 +1,11 @@
-﻿create table core.user_category(
+﻿drop table core.product_x_basket;
+drop table core.basket;
+drop table core.product
+drop table core.user;
+drop table core.user_category;
+drop table core.unit;
+
+create table core.user_category(
 	id int primary key not null,
 	name text not null
 );
@@ -9,24 +16,24 @@ create table core.user(
 	category int references core.user_category(id)
 );
 
-create table core.product(
+create table core.unit(
 	id int primary key not null,
 	name text not null
 );
 
-create table core.cart(
+create table core.product(
 	id int primary key not null,
-	creation_date timestamp default current_timestamp,
-	generator int references core.user(id),
-	generator_date timestamp,
-	collector int references core.user(id),
-	collector_date timestamp,
-	center int references core.user(id),
-	center_date timestamp
+	name text not null,
+	unit_id int references core.unit(id)
 );
 
-create table core.product_x_cart(
+create table core.basket(
+	id int primary key not null,
+	user_owner int references core.user(id)
+);
+
+create table core.product_x_basket(
 	id int primary key not null,
 	product_id int references core.product(id),
-	cart_id int references core.cart(id)
+	basket_id int references core.basket(id)
 );
