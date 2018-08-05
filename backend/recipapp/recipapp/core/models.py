@@ -61,7 +61,7 @@ class Basket(db.Model):
     __tablename__ = 'basket'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
-    user_owner = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_owner = db.Column(db.Integer, nullable=False)
     latitude = db.Column(db.Float, nullable=False)
     longitude = db.Column(db.Float, nullable=False)
 
