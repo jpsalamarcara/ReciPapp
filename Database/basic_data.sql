@@ -27,6 +27,4 @@ insert into core.user (name, category) values ('T.U.J.A.L', '3');
 insert into core.basket (user_owner, latitude, longitude) values (1, 4.687216, -74.048675);
 insert into core.product_x_basket (product_id, basket_id, product_status) values (1, 1, 0);
 
--- Productos con unidad
-select p.name as name, q.name as unit from core.product as p join core.unit as q on p.unit_id = q.id;
--- Usuarios con categor
+commit;
