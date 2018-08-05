@@ -79,11 +79,9 @@ class ProductBasket(db.Model):
     pick_date = db.Column(db.Date)
     pick_hour = db.Column(db.String)
 
-
 class ProductBasketSchema(ma.Schema):
     class Meta:
         fields = ('id', 'product_id', 'basket_id')
-
 
 class Transaction(db.Model):
     __tablename__ = 'transaction'

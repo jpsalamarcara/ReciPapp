@@ -9,7 +9,7 @@ import recipapp.biz.product
 import recipapp.biz.unit
 import recipapp.biz.transaction
 import recipapp.biz.publish
-
+import recipapp.biz.basket
 
 basedir = os.path.abspath(os.environ['HOME'])
 logger = logging.getLogger(__name__)
@@ -64,6 +64,9 @@ def create_transaction():
 def publish():
     return jsonify(recipapp.biz.publish(request))
 
+@app.route("/BASKET/<user_id>", methods=['GET'])
+def get_user_basket(user_id):
+    return jsonify(recipapp.biz.basket.get_allByUser(user_id))
 
 @app.after_request
 def after_request(response):
