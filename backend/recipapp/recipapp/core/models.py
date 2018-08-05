@@ -73,9 +73,11 @@ class ProductBasket(db.Model):
     __table_name__ = 'product_x_basket'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
-    basket_id = db.Column(db.Integer, db.ForeignKey('product.id'))
-
+    product_id = db.Column(db.Integer)
+    basket_id = db.Column(db.Integer)
+    product_status = db.Column(db.Integer)
+    pick_date = db.Column(db.Date)
+    pick_hour = db.Column(db.String)
 
 class ProductBasketSchema(ma.Schema):
     class Meta:
