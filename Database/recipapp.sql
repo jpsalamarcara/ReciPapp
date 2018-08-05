@@ -10,12 +10,12 @@ drop table core.unit;
 -- Basic objects
 
 create table core.user_category(
-	id int primary key not null,
+	id serial primary key not null,
 	name text not null
 );
 
 create table core.user(
-	id int primary key not null,
+	id serial primary key not null,
 	name text not null,
 	category int references core.user_category(id) not null
 );
@@ -26,20 +26,20 @@ create table core.unit(
 );
 
 create table core.product(
-	id int primary key not null,
+	id serial primary key not null,
 	name text not null,
 	unit_id int references core.unit(id) not null
 );
 
 create table core.basket(
-	id int primary key not null,
+	id serial primary key not null,
 	user_owner int references core.user(id) not null,
 	latitude numeric,
 	longitude numeric
 );
 
 create table core.product_x_basket(
-	id int primary key not null,
+	id serial primary key not null,
 	product_id int references core.product(id) not null,
 	basket_id int references core.basket(id) not null
 );
@@ -48,7 +48,7 @@ create table core.product_x_basket(
 -- Transaction Objects
 
 create table core.transaction(
-	id int primary key not null,
+	id serial primary key not null,
 	product int references core.product(id) not null,
 	origin_user int references core.user(id) not null,
 	end_user int references core.user(id) not null,
