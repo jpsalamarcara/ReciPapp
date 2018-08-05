@@ -7,6 +7,7 @@ from recipapp.core.models import db, ma
 
 import recipapp.biz.product
 import recipapp.biz.unit
+import recipapp.biz.transaction
 
 
 basedir = os.path.abspath(os.environ['HOME'])
@@ -52,6 +53,11 @@ def get_all_units():
     return jsonify(recipapp.biz.unit.get_all())
 
 
+@app.route("/TRANSACTION", methods=['POST'])
+def create_transaction():
+    return jsonify(recipapp.biz.transaction(request))
+
+
 @app.after_request
 def after_request(response):
     header = response.headers
@@ -61,4 +67,4 @@ def after_request(response):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True )
+    app.run(host='0.0.0.0')
