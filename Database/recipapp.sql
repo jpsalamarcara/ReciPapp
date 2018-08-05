@@ -21,7 +21,7 @@ create table core.user(
 );
 
 create table core.unit(
-	id int primary key not null,
+	id serial primary key not null,
 	name text not null
 );
 
@@ -53,7 +53,8 @@ create table core.transaction(
 	origin_user int references core.user(id) not null,
 	end_user int references core.user(id) not null,
 	date timestamp default current_date not null,
-	price numeric not null
+	total_price numeric not null,
+	quantity int not null
 );
 
 
