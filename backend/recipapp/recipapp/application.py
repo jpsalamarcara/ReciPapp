@@ -9,8 +9,7 @@ import recipapp.biz.product
 import recipapp.biz.unit
 
 
-# basedir = os.path.abspath(os.environ['HOME'])
-basedir = os.path.abspath(os.environ['PWD'])
+basedir = os.path.abspath(os.environ['HOME'])
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(os.path.join(basedir, 'process_monitor.log'))
