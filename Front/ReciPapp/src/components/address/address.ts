@@ -58,7 +58,7 @@ export class AddressComponent {
 
 
   public getDireccionApi(_coordenadas: InfoAddress): Promise<InfoAddress> {
-
+/*
     return new Promise((resolve) => {
 
       this.proServices.ejecutarPeticionGET(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${_coordenadas.latitude},${_coordenadas.longitude}&result_type=street_address&key=AIzaSyBI0rUuOcIEOsG-u_qhko6uVzgk4gzrtsE`)
@@ -79,6 +79,9 @@ export class AddressComponent {
           resolve(_coordenadas);
         });
     });
+
+*/
+    return null;
   }
 
 

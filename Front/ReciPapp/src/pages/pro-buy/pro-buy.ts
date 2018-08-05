@@ -38,11 +38,12 @@ export class ProBuyPage {
     };
 
     //Asigna valor a la variabla hasta que termina el provider
-    this.ctrlStorage.getData( 'idProcessor' ).then( this.idProcessor );
+    this.ctrlStorage.getData( 'idProcessor' )
+      .then( (value => { this.idProcessor = value }) );
 
     //console.log( this.configProv.listMaterials );
     //console.log( this.navParams.get( 'idCollector' ) );
-    console.log(this.collector.id);
+    //console.log(this.collector.id);
   }
 
   private setProduct( _id:string, _cant:number, _price:number ){

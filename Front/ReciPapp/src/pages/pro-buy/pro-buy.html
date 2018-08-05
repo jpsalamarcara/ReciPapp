@@ -18,13 +18,16 @@
     <ion-item *ngFor="let material of listMaterials">
 
       <ion-thumbnail item-start>
-        <img src="../../assets/imgs/garbage-truck.png">
+        <img src='../../assets/imgs/{{ material.image }}'>
       </ion-thumbnail>
       <h2>{{ material.description }}</h2>
+      <br>
+      <ion-input type="number" placeholder="kg"></ion-input>
+      <ion-input type="number" placeholder="$" (ngModelChange)="currencyValue=$event.target.value"></ion-input>
 
     </ion-item>
   </ion-list>
 
-  <button ion-button full (click)="addProduct()" )>COMPRAR</button>
+  <button ion-button full (click)='addProduct()'>COMPRAR</button>
 
 </ion-content>
