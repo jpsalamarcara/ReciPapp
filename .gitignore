@@ -23,3 +23,5 @@ core/test-components/
 core/css/
 angular/css/
 $RECYCLE.BIN/
+*.pyc
+backend/.DS_Store
