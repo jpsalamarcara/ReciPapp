@@ -11,6 +11,8 @@ def get_all():
     result = multiple_transaction_schema.dump(all_persons, update_fields=False)
     return result
 
+def close(request):
+    return {"result":"0", "message":"success"}
 
 def insert(request):
     product = request.json['product']
@@ -19,7 +21,7 @@ def insert(request):
     try:
         new_transaction = Transaction(product=product, origin_user=origin_user, end_user=end_user)
         db.session.add(new_transaction)
-        db.session.flush()
+        #db.session.flush()
         basket = Basket.query.filter(Basket.user_owner == origin_user).one()
         basket_product = ProductBasket.query.filter((ProductBasket.basket_id == basket.id) &
                                                     (ProductBasket.product_id == product) &
