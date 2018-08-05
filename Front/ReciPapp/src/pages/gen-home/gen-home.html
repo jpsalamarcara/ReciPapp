@@ -8,25 +8,33 @@
 
 
 <ion-content padding overflow-scroll="false">
-    <ion-list>
-        <list-material></list-material>
 
-        <ion-item>
-            <ion-label floating>Cantidad </ion-label>
-            <ion-input type="number"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Fecha</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY"></ion-datetime>
-        </ion-item>
-        <ion-item>
-            <ion-label col-6 floating>Hora inicial</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
-        </ion-item>
-        <ion-item>
-            <ion-label col-6 floating>Hora inicial</ion-label>
-            <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
-        </ion-item>
+    <list-material (TypeMaterial)="ActualizarMaterial($event)"></list-material>
 
+    <ion-list *ngIf="dataRequest.material.id > 0">
+        <ion-card>
+            <ion-card-content>
+                <h2> Valor promedio en mercado: </h2> {{dataRequest.material.valueMiddle}}/{{dataRequest.material.unit}}
+            </ion-card-content>
+        </ion-card>
+        <ion-item>
+            <ion-label color="primary" floating>Cantidad </ion-label>
+            <ion-input type="number" [(ngModel)]="dataRequest.quantity"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" floating>Fecha</ion-label>
+            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="dataRequest.date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" floating>Hora inicial</ion-label>
+            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="dataRequest.time"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label color="primary" floating>Hora inicial</ion-label>
+            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="dataRequest.timeEnd"></ion-datetime>
+        </ion-item>
+        <div>
+            <button ion-button block (click)="Continuar()">Continuar</button>
+        </div>
     </ion-list>
 </ion-content>

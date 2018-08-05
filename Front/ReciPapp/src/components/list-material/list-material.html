@@ -1,6 +1,6 @@
 <form [formGroup]="objFormMaterial">
     <ion-item>
-        <ion-label floating>Tipo de material:</ion-label>
+        <ion-label color="primary" floating>Tipo de material:</ion-label>
         <ion-select formControlName="fcMaterial" interface="popover">
             <ion-option *ngFor="let _material of proConfiguration.listMaterials" [value]="_material">{{_material.description}}</ion-option>
         </ion-select>

@@ -1,0 +1,14 @@
+<form [formGroup]="objFormAddress">
+    <ion-fab right color="light">
+        <button ion-fab mini type="button" color="light" (click)="getMyPosition()">
+          <ion-icon ios="ios-locate" md="md-locate" color="primary"></ion-icon>
+      </button>
+    </ion-fab>
+    <ion-item>
+        <ion-label color="primary" floating>Dirección</ion-label>
+        <ion-input formControlName="fcAddress" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!objFormAddress.controls.fcAddress.valid && objFormAddress.controls.fcAddress.touched">
+        <p class="alerForm">Indique una dirección</p>
+    </ion-item>
+</form>
