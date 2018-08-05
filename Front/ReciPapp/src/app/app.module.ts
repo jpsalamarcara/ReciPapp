@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 import { PerfilPage } from "../pages/perfil/perfil";
 import { GenHomePage } from "../pages/gen-home/gen-home";
 import { ProRecolectorsPage } from "../pages/pro-recolectors/pro-recolectors";
+import { ProBuyPage } from "../pages/pro-buy/pro-buy";
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,7 +24,8 @@ import { ConfigurationProvider } from '../providers/configuration/configuration'
     ListMaterialComponent,
     PerfilPage,
     GenHomePage,
-    ProRecolectorsPage
+    ProRecolectorsPage,
+    ProBuyPage
 
   ],
   imports: [
@@ -35,7 +37,8 @@ import { ConfigurationProvider } from '../providers/configuration/configuration'
     MyApp,
     PerfilPage,
     GenHomePage,
-    ProRecolectorsPage
+    ProRecolectorsPage,
+    ProBuyPage
   ],
   providers: [
     StatusBar,

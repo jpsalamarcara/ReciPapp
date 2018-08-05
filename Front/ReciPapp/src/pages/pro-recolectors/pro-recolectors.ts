@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-//Class
+//Models
 import { Collector } from '../../models/mCollector';
+
+//Pages
+import { ProBuyPage } from "../pro-buy/pro-buy";
 
 @IonicPage()
 @Component({
@@ -13,6 +16,7 @@ export class ProRecolectorsPage {
 
   searchQuery: string = '';
   collectors: Collector[] = [];
+  proBuyPage: any = ProBuyPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.initializeItems();
@@ -20,9 +24,11 @@ export class ProRecolectorsPage {
 
   initializeItems() {
     this.collectors = [
-      { name: 'Alfonso Z', id: '12345' },
-      { name: 'Alfonso B', id: '12346' },
-      { name: 'Alfonso C', id: '12347' }
+      { name: 'Oscar Z', id: '12345' },
+      { name: 'Dairo B', id: '12346' },
+      { name: 'Juan Pablo C', id: '12347'},
+      { name: 'Anderson R', id: '12348'},
+      { name: 'Andres S', id: '12349'}
     ];
   }
 
