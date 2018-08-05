@@ -10,5 +10,5 @@
 <ion-content padding>
     <button ion-button full (click)="AbrirPerfil(1)">Generador</button>
     <button ion-button full (click)="AbrirPerfil(2)">Recolector</button>
-    <button ion-button full (click)="AbrirPerfil(3)">Procesador</button>
+    <button ion-button full [navPush]="proRecolectorsPage">Procesador</button>
 </ion-content>

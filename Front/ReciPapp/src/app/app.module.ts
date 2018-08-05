@@ -5,9 +5,11 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 //Components
 import { ListMaterialComponent } from "../components/list-material/list-material";
 
+//Pages
 import { MyApp } from './app.component';
 import { PerfilPage } from "../pages/perfil/perfil";
 import { GenHomePage } from "../pages/gen-home/gen-home";
+import { ProRecolectorsPage } from "../pages/pro-recolectors/pro-recolectors";
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,7 +22,9 @@ import { ConfigurationProvider } from '../providers/configuration/configuration'
     MyApp,
     ListMaterialComponent,
     PerfilPage,
-    GenHomePage
+    GenHomePage,
+    ProRecolectorsPage
+
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { ConfigurationProvider } from '../providers/configuration/configuration'
   entryComponents: [
     MyApp,
     PerfilPage,
-    GenHomePage
+    GenHomePage,
+    ProRecolectorsPage
   ],
   providers: [
     StatusBar,

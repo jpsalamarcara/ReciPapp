@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { GenHomePage } from "../gen-home/gen-home";
 
+//Pages
+import { ProRecolectorsPage } from "../pro-recolectors/pro-recolectors";
+
 
 @IonicPage()
 @Component({
@@ -11,7 +14,10 @@ import { GenHomePage } from "../gen-home/gen-home";
 })
 export class PerfilPage {
 
+  proRecolectorsPage: any = ProRecolectorsPage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   private AbrirPerfil(_Perfil: number) {
