@@ -1,6 +1,8 @@
 from recipapp.excep import GenericException
 from recipapp.core.models import Transaction, db, Basket, ProductBasket
+from recipapp.core.schemas import basket_schema
 
+from sqlalchemy.orm.exc import NoResultFound
 
 from recipapp.core.schemas import multiple_transaction_schema, transaction_schema
 from sqlalchemy.exc import IntegrityError
@@ -16,25 +18,18 @@ def close(request):
 
 def insert(request):
     product = request.json['product']
-    origin_user = request.json['origin_user']
-    end_user = request.json['end_user']
+    origin_user = request.json['origin']
+    end_user = request.json['destiny']
     try:
         for p in product:
-            print(p)
-            new_transaction = Transaction(product=p, origin_user=origin_user, end_user=end_user)
-            print('hola2')
-            db.session.add(new_transaction)
-            print('hola3')
             db.session.flush()
-            print('hola4')
-            basket = Basket.query.filter(Basket.user_owner == origin_user).one()
-            print('hola5')
-            basket_product = ProductBasket.query.filter((ProductBasket.basket_id == basket.id) &
-                                                        (ProductBasket.product_id == p) &
-                                                        (ProductBasket.product_status == 0)).one()
-            print('hola6')
-            basket_product.product_status = 2
-            print('hola7')
+            new_transaction = Transaction(product=p.get('idProd'),
+                                          origin_user=origin_user,
+                                          end_user=end_user,
+                                          quantity=p.get('cantProd'),
+                                          status=2,
+                                          total_price=p.get('priceProd'))
+            db.session.add(new_transaction)
             db.session.commit()
     except IntegrityError as e:
         db.session.rollback()
