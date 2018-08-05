@@ -43,6 +43,8 @@ create table core.product_x_basket(
 	product_id int references core.product(id) not null,
 	basket_id int references core.basket(id) not null,
 	product_status int not null
+	pick_date date,
+	pick_hour text
 );
 
 -- Basic Objects
