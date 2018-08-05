@@ -20,14 +20,21 @@ def insert(request):
     end_user = request.json['end_user']
     try:
         for p in product:
-            new_transaction = Transaction(product=product, origin_user=origin_user, end_user=end_user)
+            print(p)
+            new_transaction = Transaction(product=p, origin_user=origin_user, end_user=end_user)
+            print('hola2')
             db.session.add(new_transaction)
+            print('hola3')
             db.session.flush()
+            print('hola4')
             basket = Basket.query.filter(Basket.user_owner == origin_user).one()
+            print('hola5')
             basket_product = ProductBasket.query.filter((ProductBasket.basket_id == basket.id) &
                                                         (ProductBasket.product_id == p) &
                                                         (ProductBasket.product_status == 0)).one()
+            print('hola6')
             basket_product.product_status = 2
+            print('hola7')
             db.session.commit()
     except IntegrityError as e:
         db.session.rollback()
