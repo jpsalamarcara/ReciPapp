@@ -11,7 +11,7 @@ import recipapp.biz.transaction
 import recipapp.biz.publish
 
 
-basedir = os.path.abspath(os.environ['HOME'])
+basedir = os.path.abspath(os.environ['PWD'])
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(os.path.join(basedir, 'process_monitor.log'))
@@ -57,13 +57,16 @@ def get_all_units():
 @app.route("/TRANSACTION", methods=['POST'])
 def create_transaction():
     # TODO: añadir product_status=1 en tabla product_basket
-    return jsonify(recipapp.biz.transaction(request))
+    return jsonify(recipapp.biz.transaction.insert(request))
 
 
 @app.route("/PUBLISH", methods=['POST'])
 def publish():
-    return jsonify(recipapp.biz.publish(request))
+    return jsonify(recipapp.biz.publish.insert(request))
 
+@app.route("/BASKET/<user_id>", methods=['GET'])
+def get_user_basket(user_id):
+    return jsonify(recipapp.biz.basket.get_allByUser(user_id))
 
 @app.after_request
 def after_request(response):

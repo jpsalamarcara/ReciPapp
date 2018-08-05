@@ -1,6 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
+import datetime
+
 db = SQLAlchemy()
 ma = Marshmallow()
 
@@ -89,13 +91,15 @@ class Transaction(db.Model):
     __tablename__ = 'transaction'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
-    product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
-    origin_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    end_user = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date = db.Column(db.DateTime)
-    price = db.Column(db.Float)
+    product = db.Column(db.Integer, nullable=False)
+    origin_user = db.Column(db.Integer, nullable=False)
+    end_user = db.Column(db.Integer, nullable=False)
+    creation_date = db.Column(db.DateTime, default=datetime.datetime.now())
+    total_price = db.Column(db.Float)
+    quantity = db.Column(db.Integer)
+    status = db.Column(db.Integer)
 
 
 class TransactionSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'product', 'origin_user', 'end_user', 'date', 'price')
+        fields = ('id', 'product', 'origin_user', 'end_user', 'creation_date', 'total_price', 'quantity', 'status' )
