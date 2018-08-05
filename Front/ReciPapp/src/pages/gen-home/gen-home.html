@@ -1,40 +1,25 @@
 <ion-header>
-
     <ion-navbar>
-        <ion-title>Solicitud</ion-title>
+        <ion-title>Datos solicitante</ion-title>
     </ion-navbar>
-
 </ion-header>
 
-
-<ion-content padding overflow-scroll="false">
-
-    <list-material (TypeMaterial)="ActualizarMaterial($event)"></list-material>
-
-    <ion-list *ngIf="dataRequest.material.id > 0">
-        <ion-card>
-            <ion-card-content>
-                <h2> Valor promedio en mercado: </h2> {{dataRequest.material.valueMiddle}}/{{dataRequest.material.unit}}
-            </ion-card-content>
-        </ion-card>
+<ion-content padding>
+    <ion-list>
         <ion-item>
-            <ion-label color="primary" floating>Cantidad </ion-label>
-            <ion-input type="number" [(ngModel)]="dataRequest.quantity"></ion-input>
+            <ion-label color="primary" floating>Nombre y apellidos</ion-label>
+            <ion-input type="text" [(ngModel)]="infoGenerator.name"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label color="primary" floating>Fecha</ion-label>
-            <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" [(ngModel)]="dataRequest.date"></ion-datetime>
+            <ion-label color="primary" floating>Número celular</ion-label>
+            <ion-input type="tel" [(ngModel)]="infoGenerator.phoneNumber"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label color="primary" floating>Hora inicial</ion-label>
-            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="dataRequest.time"></ion-datetime>
+            <ion-label color="primary" floating>Dirección</ion-label>
+            <ion-input type="text"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-label color="primary" floating>Hora inicial</ion-label>
-            <ion-datetime displayFormat="hh:mm A" pickerFormat="hh mm A" [(ngModel)]="dataRequest.timeEnd"></ion-datetime>
-        </ion-item>
-        <div>
-            <button ion-button block (click)="Continuar()">Continuar</button>
-        </div>
     </ion-list>
+    <div>
+        <button ion-button block (click)="generateOffer()">Continuar</button>
+    </div>
 </ion-content>

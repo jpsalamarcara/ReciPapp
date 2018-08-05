@@ -18,6 +18,8 @@ export class ConexionServiceProvider {
       this.apiHttp.get(_objPeticion.endPoint, { headers: { 'Content-Type': 'application/json;' }, observe: "body", responseType: 'json' })
         .subscribe((_result) => {
           Response = new ResposeService(true, _result);
+          console.log('Result service GET', _result);
+          
           resolve(Response);
         }, (err: HttpErrorResponse) => {
           Response.message = this.controlError(err);
@@ -27,7 +29,7 @@ export class ConexionServiceProvider {
   }
 
 
-  private ejecutarPeticionPOST(_objPeticion: PeticionService): Promise<ResposeService> {
+  public ejecutarPeticionPOST(_objPeticion: PeticionService): Promise<ResposeService> {
 
     let Response: ResposeService = new ResposeService();
 
@@ -36,6 +38,7 @@ export class ConexionServiceProvider {
       this.apiHttp.post(_objPeticion.endPoint, _objPeticion.body, { headers: { 'Content-Type': 'application/json;' }, observe: "body", responseType: 'json' })
         .subscribe((_result) => {
           Response = new ResposeService(true, _result);
+          console.log('Result service POST', _result);
           resolve(Response);
         }, (err: HttpErrorResponse) => {
           Response.message = this.controlError(err);

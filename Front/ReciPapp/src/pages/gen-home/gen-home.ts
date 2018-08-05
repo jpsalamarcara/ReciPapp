@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { RequestGenerator } from '../../models/mRequest';
 import { Material } from '../../models/mMaterial';
 
-import { GenLocationPage } from "../gen-location/gen-location";
+import { GenBidPage } from "../gen-bid/gen-bid";
+import { CtrlStorageProvider } from '../../providers/ctrl-storage/ctrl-storage';
+import { InfoGenerator } from '../../models/mGenerator';
 
 @IonicPage()
 @Component({
@@ -13,26 +13,32 @@ import { GenLocationPage } from "../gen-location/gen-location";
 })
 export class GenHomePage {
 
-  private objFormCategory: FormGroup;
-  private dataRequest: RequestGenerator;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, private apiFormBuilder: FormBuilder) {
 
-    this.dataRequest = new RequestGenerator();
+  private infoGenerator: InfoGenerator;
 
-    this.objFormCategory = this.apiFormBuilder.group({
-      fcTipoDocumento: new FormControl(['', Validators.required])
-    });
-    
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private proStorage: CtrlStorageProvider) {
+
+    this.infoGenerator = new InfoGenerator();
   }
 
-  private ActualizarMaterial(_Material: Material){
-    this.dataRequest.material = _Material;
+  ionViewWillEnter() {
+    //Se valida si hay información registrada del generador
+
+    this.proStorage.getData("DatosGenerator")
+      .then((_Datos) => {
+        if (_Datos != null){
+          this.infoGenerator = _Datos;
+          this.navCtrl.setRoot(GenBidPage, this.infoGenerator);
+        }
+      })
   }
 
-  private Continuar(){
-    this.navCtrl.push(GenLocationPage, this.dataRequest);
 
+  private generateOffer() {
+    this.proStorage.saveData("DatosGenerator", this.infoGenerator);
+    this.navCtrl.push(GenBidPage, this.infoGenerator);
   }
 
 

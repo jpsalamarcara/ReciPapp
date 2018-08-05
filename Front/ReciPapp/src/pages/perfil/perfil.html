@@ -6,13 +6,13 @@
 
 <ion-content padding>
 
-  <ion-card>
-    <img src="../../assets/imgs/logo_recipapp.png"/>
-    <ion-card-content>
-    </ion-card-content>
-  </ion-card>
+    <ion-card>
+        <img src="../../assets/imgs/logo_recipapp.png" />
+        <ion-card-content>
+        </ion-card-content>
+    </ion-card>
 
-    <button ion-button full (click)="AbrirPerfil(1)">Generador</button>
-    <button ion-button full (click)="AbrirPerfil(2)">Recolector</button>
+    <button ion-button full (click)="showGenerator()">Generador</button>
+    <button ion-button full (click)="showRecolector()">Recolector</button>
     <button ion-button full [navPush]="proRecolectorsPage">Procesador</button>
 </ion-content>

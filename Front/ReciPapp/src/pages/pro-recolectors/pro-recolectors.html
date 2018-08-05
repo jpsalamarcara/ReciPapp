@@ -1,27 +1,25 @@
-
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>pro-recolectors</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Recolectores</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <ion-list *ngIf="loadDataReady">
-    <ion-item *ngFor="let collector of collectors.response">
 
-      <ion-thumbnail item-start>
-        <img src="../../assets/imgs/garbage_deliver.png">
-      </ion-thumbnail>
-      <button [navPush]="proBuyPage"
-              [navParams]="{ 'idCollector':collector.id }">
+    <ion-list *ngIf="loadDataReady">
+        <ion-item *ngFor="let collector of collectors.response">
+
+            <ion-thumbnail item-start>
+                <img src="../../assets/imgs/garbage_deliver.png">
+            </ion-thumbnail>
+            <button [navPush]="proBuyPage" [navParams]="{ 'idCollector':collector.id }">
         <h2>{{ collector.name }}</h2>
       </button>
 
-    </ion-item>
-  </ion-list>
+        </ion-item>
+    </ion-list>
 
 </ion-content>

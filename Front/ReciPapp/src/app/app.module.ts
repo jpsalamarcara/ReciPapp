@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'; 
 
 //Components
 import { ListMaterialComponent } from "../components/list-material/list-material";
@@ -11,9 +11,13 @@ import { AddressComponent } from "../components/address/address";
 import { MyApp } from './app.component';
 import { PerfilPage } from "../pages/perfil/perfil";
 import { GenHomePage } from "../pages/gen-home/gen-home";
-import { GenLocationPage } from "../pages/gen-location/gen-location";
+import { GenBidPage } from '../pages/gen-bid/gen-bid';
 import { ProRecolectorsPage } from "../pages/pro-recolectors/pro-recolectors";
 import { ProBuyPage } from "../pages/pro-buy/pro-buy";
+import { RecHomePage } from "../pages/rec-home/rec-home";
+import { RecOffersPage } from "../pages/rec-offers/rec-offers";
+import { RecPendingPage } from "../pages/rec-pending/rec-pending";
+import { RecConfirmationPage } from "../pages/rec-confirmation/rec-confirmation";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +26,8 @@ import { ConfigurationProvider } from '../providers/configuration/configuration'
 import { Geolocation } from '@ionic-native/geolocation';
 import { IonicStorageModule } from '@ionic/storage';
 import { CtrlStorageProvider } from '../providers/ctrl-storage/ctrl-storage';
+import { GenBusinessProvider } from '../providers/gen-business/gen-business';
+
 
 @NgModule({
   declarations: [
@@ -30,14 +36,19 @@ import { CtrlStorageProvider } from '../providers/ctrl-storage/ctrl-storage';
     AddressComponent,
     PerfilPage,
     GenHomePage,
+    GenBidPage,
     ProRecolectorsPage,
-    ProBuyPage,
-    GenLocationPage
+    ProBuyPage,    
+    RecHomePage,
+    RecOffersPage,
+    RecPendingPage,
+    RecConfirmationPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+
     HttpClientModule,
+    IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
       name: '__dbReciPapp',
          driverOrder: ['indexeddb', 'websql', 'sqlite']
@@ -48,9 +59,13 @@ import { CtrlStorageProvider } from '../providers/ctrl-storage/ctrl-storage';
     MyApp,
     PerfilPage,
     GenHomePage,
-    GenLocationPage,
+    GenBidPage,
     ProRecolectorsPage,
-    ProBuyPage
+    ProBuyPage,
+    RecHomePage,
+    RecOffersPage,
+    RecPendingPage,
+    RecConfirmationPage
   ],
   providers: [
     StatusBar,
@@ -59,7 +74,8 @@ import { CtrlStorageProvider } from '../providers/ctrl-storage/ctrl-storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConexionServiceProvider,
     ConfigurationProvider,
-    CtrlStorageProvider
+    CtrlStorageProvider,
+    GenBusinessProvider
   ]
 })
 export class AppModule {}

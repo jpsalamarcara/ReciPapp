@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Ofertas</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let Offer of proConfiguration.listOffers">
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="assets/imgs/recycle.png">
+                </ion-avatar>
+                <h2>{{proConfiguration.getNameMaterial(Offer.idProduct)}}, {{Offer.quantity}} {{proConfiguration.getUnit(Offer.idProduct)}} </h2>
+                <p>{{Offer.collectionDate | date:'MMM d, y' }}, {{Offer.rangeHours}}</p>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+</ion-content>

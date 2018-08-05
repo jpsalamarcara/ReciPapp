@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Recolecciones pedientes</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let Pending of proConfiguration.listPending">
+            <ion-item (click)="confirm(Pending)">
+                <ion-avatar item-start>
+                    <img src="assets/imgs/recycle.png">
+                </ion-avatar>
+                <h2>{{proConfiguration.getNameMaterial(Pending.idProduct)}}, {{Pending.quantity}} {{proConfiguration.getUnit(Pending.idProduct)}} </h2>
+                <p>{{Pending.collectionDate | date:'MMM d, y' }}, {{Pending.rangeHours}}</p>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+</ion-content>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { GenHomePage } from "../gen-home/gen-home";
+import { RecHomePage } from "../rec-home/rec-home";
 
 //Pages
 import { ProRecolectorsPage } from "../pro-recolectors/pro-recolectors";
@@ -32,6 +33,14 @@ export class PerfilPage {
       this.navCtrl.setRoot(GenHomePage);
         break;
     }
+  }
+
+  private showGenerator(){
+    this.navCtrl.setRoot(GenHomePage);
+  }
+
+  private showRecolector(){
+    this.navCtrl.setRoot(RecHomePage);
   }
 
 }

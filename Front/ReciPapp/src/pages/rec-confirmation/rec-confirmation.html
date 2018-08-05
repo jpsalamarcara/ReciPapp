@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Oferta</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding overflow-scroll="false">
+    <div>
+        <h3>Oferta inicial</h3>
+        <ion-list>
+            <ion-item>
+                <ion-label color="primary" floating>Material </ion-label>
+                <ion-input type="text" readonly [value]="_Material.description"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" floating>Cantidad {{_Material.unit}}</ion-label>
+                <ion-input type="number" readonly [value]="_Pending.quantity"></ion-input>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div>
+
+        <ion-list>
+            <h2>Negociación final</h2>
+            <ion-card>
+                <ion-card-content>
+                    <h3> Valor promedio en mercado: </h3> {{_Material.valueMiddle}}/{{_Material.unit}}
+                </ion-card-content>
+            </ion-card>
+
+            <ion-item>
+                <ion-label color="primary" floating>Cantidad comprada ({{_Material.unit}}) </ion-label>
+                <ion-input type="number" [(ngModel)]="_Confirmacion.quantity"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" floating>Valor pactado</ion-label>
+                <ion-input type="number" [(ngModel)]="_Confirmacion.price"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary" floating>Total transacción</ion-label>
+                <ion-input type="number" readonly [value]="_Confirmacion.total"></ion-input>
+            </ion-item>
+        </ion-list>
+        <div>
+            <button ion-button block (click)="ConfirmarRecoleccion()">Publicar</button>
+        </div>
+    </div>
+</ion-content>

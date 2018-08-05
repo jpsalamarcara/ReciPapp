@@ -17,9 +17,9 @@ export class PeticionService{
 export class ResposeService{
     excecuted: boolean;
     message: string;
-    response?: object;
+    response?: any;
 
-    constructor(_excecuted: boolean = false, _response?: object, _message: string = 'Petición no ejecutada. '){
+    constructor(_excecuted: boolean = false, _response?: any, _message: string = 'Petición no ejecutada. '){
         this.excecuted = _excecuted;
         this.message = _message;
         this.response = _response;

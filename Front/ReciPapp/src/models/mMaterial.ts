@@ -3,7 +3,7 @@ export class Material{
     description: string;
     unit: string;
     valueMiddle: number;
-    image: string;
+    image?: string;
 
     constructor(){
         this.id = 0;
