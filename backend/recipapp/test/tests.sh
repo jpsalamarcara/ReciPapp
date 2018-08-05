@@ -1,2 +1,3 @@
 curl -X GET localhost:5000/PRODUCT
 curl -X POST -H "Content-Type: application/json" -d '{"collectionDate":"2017-08-05", "id":1, "idProduct":2, "latitude":4.683709, "longitude":-74.047758, "name":"Test", "phoneNumber":"3245465", "quantity":"345", "rangeHours":"13:44 - 13:44"}' localhost:5000/PUBLISH
+curl -X GET -H "Content-Type: application/json" -d '{"user_id":"1"}' localhost:5000/TO_USER_TRANSACTION

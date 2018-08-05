@@ -13,8 +13,22 @@ def get_all():
     result = multiple_transaction_schema.dump(all_persons, update_fields=False)
     return result
 
+
+def get_all_from_User(user_id):
+    all_transactions = Transaction.query.filter(Transaction.origin_user == user_id)
+    result = multiple_transaction_schema.dump(all_transactions, update_fields=False)
+    return result
+
+
+def get_all_to_User(user_id):
+    all_transactions = Transaction.query.filter(Transaction.end_user == user_id)
+    result = multiple_transaction_schema.dump(all_transactions, update_fields=False)
+    return result
+
+
 def close(request):
     return {"result":"0", "message":"success"}
+
 
 def insert(request):
     product = request.json['product']

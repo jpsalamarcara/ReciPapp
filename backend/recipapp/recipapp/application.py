@@ -54,9 +54,22 @@ def get_all_products():
 def get_all_units():
     return jsonify(recipapp.biz.unit.get_all())
 
+
 @app.route("/CLOSE_TRANSACTION", methods=['POST'])
 def close_transaction():
     return jsonify(recipapp.biz.transaction.close(request))
+
+
+@app.route("/FROM_USER_TRANSACTION", methods=['GET'])
+def get_from_user_transactions():
+    user_id = request.json['user_id']
+    return jsonify(recipapp.biz.transaction.get_all_from_User(user_id))
+
+
+@app.route("/TO_USER_TRANSACTION", methods=['GET'])
+def get_to_user_transactions():
+    user_id = request.json['user_id']
+    return jsonify(recipapp.biz.transaction.get_all_to_User(user_id))
 
 
 @app.route("/TRANSACTION", methods=['POST'])
