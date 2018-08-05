@@ -2,9 +2,9 @@ const IP_SERVICE: String ="http://52.87.158.30";
 
 export class PeticionService{
     method: string;
-    body: any;
+    body?: any;
 
-    constructor(_method: string, _body: any){
+    constructor(_method: string, _body?: any){
         this.method = _method;
         this.body = _body;
     }

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClientModule } from '@angular/common/http';
 
 //Components
 import { ListMaterialComponent } from "../components/list-material/list-material";
@@ -36,6 +37,7 @@ import { CtrlStorageProvider } from '../providers/ctrl-storage/ctrl-storage';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule,
     IonicStorageModule.forRoot({
       name: '__dbReciPapp',
          driverOrder: ['indexeddb', 'websql', 'sqlite']
