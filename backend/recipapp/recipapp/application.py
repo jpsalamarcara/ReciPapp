@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import cross_origin, CORS
 from recipapp.core.models import db, ma
 
+import recipapp.biz.product
 import recipapp.biz.unit
 
 
@@ -22,13 +23,15 @@ logger.info('BASEDIR: {}'.format(basedir))
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'crud.sqlite')
-logger.info('SQLALCHEMY_DATABASE_URI: '+'sqlite:///' + os.path.join(basedir, 'crud.sqlite'))
+# app.config['DEBUG'] = True
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'crud.sqlite')
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://admin:RCKWZWMXJTLIDKKY@sl-us-south-1-portal.31.dblayer.com:52550/recipapp"
+#logger.info('SQLALCHEMY_DATABASE_URI: '+'sqlite:///' + os.path.join(basedir, 'crud.sqlite'))
 
 db.init_app(app)
 ma.init_app(app)
 app.app_context().push()
-db.create_all()
+# db.create_all()
 
 
 @app.errorhandler(Exception)
@@ -42,6 +45,11 @@ def handle_invalid_usage(error):
 
 @app.route("/PRODUCT", methods=['GET'])
 def get_all_products():
+    return jsonify(recipapp.biz.product.get_all())
+
+
+@app.route("/UNIT", methods=['GET'])
+def get_all_units():
     return jsonify(recipapp.biz.unit.get_all())
 
 

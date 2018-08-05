@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 REQUIRED = [
-     'flask', 'flask_sqlalchemy', 'flask_marshmallow', 'marshmallow-sqlalchemy', 'flask-cors', 'sqlalchemy'
+     'flask', 'flask_sqlalchemy', 'flask_marshmallow', 'marshmallow-sqlalchemy', 'flask-cors', 'sqlalchemy', 'psycopg2'
 ]
 
 with open('README.md') as f:
