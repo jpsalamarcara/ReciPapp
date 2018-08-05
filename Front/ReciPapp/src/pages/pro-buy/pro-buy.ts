@@ -9,7 +9,8 @@ import { Product } from '../../models/mProduct';
 import { Transaction } from '../../models/mTransaction';
 
 //Providers
-import { ConexionServiceProvider } from '../../providers/conexion-service/conexion-service';
+import { CtrlStorageProvider } from "../../providers/ctrl-storage/ctrl-storage";
+
 
 @IonicPage()
 @Component({
@@ -20,6 +21,7 @@ export class ProBuyPage {
 
   listMaterials: any;
   collector: Collector;
+  idProcessor: any;
   product: Product;
   products: Product[];
   transaction: Transaction;
@@ -27,13 +29,17 @@ export class ProBuyPage {
   constructor( public navCtrl: NavController,
                public navParams: NavParams,
                private configProv: ConfigurationProvider,
-               private conexionService: ConexionServiceProvider )
+               private ctrlStorage: CtrlStorageProvider )
   {
     this.listMaterials = this.configProv.listMaterials;
     this.collector = {
       id: this.navParams.get('idCollector'),
       name: ''
     };
+
+    //Asigna valor a la variabla hasta que termina el provider
+    this.ctrlStorage.getData( 'idProcessor' ).then( this.idProcessor );
+
     //console.log( this.configProv.listMaterials );
     //console.log( this.navParams.get( 'idCollector' ) );
     console.log(this.collector.id);
@@ -48,10 +54,8 @@ export class ProBuyPage {
   }
 
   private addProduct( _product: Product ){
-    this.products.push( _product );
+    //this.products.push( _product );
+    console.log(this.idProcessor);
   }
 
-  private buildTransact(){
-   null;
-  }
 }
