@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { HttpClient } from "@angular/common/http";
 
 //Models
 import { Collector } from '../../models/mCollector';
+import { PeticionService } from '../../models/mPeticionService';
 
 //Pages
 import { ProBuyPage } from "../pro-buy/pro-buy";
 
 //Providers
 import { CtrlStorageProvider } from "../../providers/ctrl-storage/ctrl-storage";
+import { ConexionServiceProvider } from "../../providers/conexion-service/conexion-service";
+import {async} from "rxjs/scheduler/async";
 
 @IonicPage()
 @Component({
@@ -18,30 +22,41 @@ import { CtrlStorageProvider } from "../../providers/ctrl-storage/ctrl-storage";
 export class ProRecolectorsPage {
 
   searchQuery: string = '';
-  collectors: Collector[] = [];
+  collectors: any;
+  loading: any;
+  objectReq: PeticionService = new PeticionService('/COLLECTOR', null);
   proBuyPage: any = ProBuyPage;
   idProcessor: number = 999999999;
+  loadDataReady: boolean = false;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private ctrlStorage: CtrlStorageProvider ) {
-    this.initializeItems();
-    this.ctrlStorage.saveData( "idProcessor", this.idProcessor );
-  }
+              private ctrlStorage: CtrlStorageProvider,
+              private conexService: ConexionServiceProvider,
+              private loadingCtrl: LoadingController ) {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'bubbles',
+      content: 'Cargando lista de recolectores...'
+    });
 
-  initializeItems() {
-    this.collectors = [
-      { name: 'Oscar Z', id: '12345' },
-      { name: 'Dairo B', id: '12346' },
-      { name: 'Juan Pablo C', id: '12347'},
-      { name: 'Anderson R', id: '12348'},
-      { name: 'Andres S', id: '12349'}
-    ];
+    this.loading.present();
+
+    this.conexService.ejecutarPeticionGET( this.objectReq )
+      .then( (value => {
+                        this.collectors = value;
+                        console.log("body:: ", this.collectors);
+                        this.loadDataReady = true;
+                       } ) );
+
+    this.loading.dismiss();
+
+    this.ctrlStorage.saveData( "idProcessor", this.idProcessor );
+
+    console.log("Bug");
   }
 
   getItems(ev: any) {
-
-    this.initializeItems();
 
     const val = ev.target.value;
 
@@ -50,6 +65,10 @@ export class ProRecolectorsPage {
         return (collector.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  getCollectors(){
+    null;
   }
 
 }
