@@ -6,7 +6,7 @@ ma = Marshmallow()
 
 
 class Unit(db.Model):
-    __table_name__ = "unit"
+    __tablename__ = "unit"
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -18,7 +18,7 @@ class UnitSchema(ma.Schema):
 
 
 class Product(db.Model):
-    __table_name__ = "product"
+    __tablename__ = "product"
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -31,7 +31,7 @@ class ProductSchema(ma.Schema):
 
 
 class UserCategory(db.Model):
-    __table_name__ = 'user_category'
+    __tablename__ = 'user_category'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -43,7 +43,7 @@ class UserCategorySchema(ma.Schema):
 
 
 class User(db.Model):
-    __table_name__ = 'user'
+    __tablename__ = 'user'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -56,7 +56,7 @@ class UserSchema(ma.Schema):
 
 
 class Basket(db.Model):
-    __table_name__ = 'basket'
+    __tablename__ = 'basket'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -70,7 +70,7 @@ class BasketSchema(ma.Schema):
 
 
 class ProductBasket(db.Model):
-    __table_name__ = 'product_x_basket'
+    __tablename__ = 'product_x_basket'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer)
@@ -79,13 +79,14 @@ class ProductBasket(db.Model):
     pick_date = db.Column(db.Date)
     pick_hour = db.Column(db.String)
 
+
 class ProductBasketSchema(ma.Schema):
     class Meta:
         fields = ('id', 'product_id', 'basket_id')
 
 
 class Transaction(db.Model):
-    __table_name__ = 'transaction'
+    __tablename__ = 'transaction'
     __table_args__ = {'schema': 'core'}
     id = db.Column(db.Integer, primary_key=True)
     product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
