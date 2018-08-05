@@ -41,7 +41,8 @@ create table core.basket(
 create table core.product_x_basket(
 	id serial primary key not null,
 	product_id int references core.product(id) not null,
-	basket_id int references core.basket(id) not null
+	basket_id int references core.basket(id) not null,
+	product_status int not null
 );
 
 -- Basic Objects
@@ -52,9 +53,10 @@ create table core.transaction(
 	product int references core.product(id) not null,
 	origin_user int references core.user(id) not null,
 	end_user int references core.user(id) not null,
-	date timestamp default current_date not null,
-	total_price numeric not null,
-	quantity int not null
+	creation_date timestamp default current_date not null,
+	total_price numeric,
+	quantity int not null,
+	status int
 );
 
 
