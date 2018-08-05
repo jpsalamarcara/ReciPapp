@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ProRecolectorsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+//Class
+import { Collector } from '../../models/mCollector';
 
 @IonicPage()
 @Component({
@@ -15,7 +11,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProRecolectorsPage {
 
+  searchQuery: string = '';
+  collectors: Collector[] = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.initializeItems();
+  }
+
+  initializeItems() {
+    this.collectors = [
+      { name: 'Alfonso Z', id: '12345' },
+      { name: 'Alfonso B', id: '12346' },
+      { name: 'Alfonso C', id: '12347' }
+    ];
+  }
+
+  getItems(ev: any) {
+
+    this.initializeItems();
+
+    const val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.collectors = this.collectors.filter((collector) => {
+        return (collector.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
   }
 
   ionViewDidLoad() {
