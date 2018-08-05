@@ -7,6 +7,9 @@ import { Collector } from '../../models/mCollector';
 //Pages
 import { ProBuyPage } from "../pro-buy/pro-buy";
 
+//Providers
+import { CtrlStorageProvider } from "../../providers/ctrl-storage/ctrl-storage";
+
 @IonicPage()
 @Component({
   selector: 'page-pro-recolectors',
@@ -17,9 +20,13 @@ export class ProRecolectorsPage {
   searchQuery: string = '';
   collectors: Collector[] = [];
   proBuyPage: any = ProBuyPage;
+  idProcessor: number = 999999999;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private ctrlStorage: CtrlStorageProvider ) {
     this.initializeItems();
+    this.ctrlStorage.saveData( "idProcessor", this.idProcessor );
   }
 
   initializeItems() {
@@ -43,10 +50,6 @@ export class ProRecolectorsPage {
         return (collector.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProRecolectorsPage');
   }
 
 }
